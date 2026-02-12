@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -80,4 +81,13 @@ public class AutoriController {
     public void getAutoreIdAndDelete(@PathVariable long autoreId){
         this.autoriService.findByAndDelete(autoreId);
     }
+
+    @PatchMapping("/{autoreId}/avatar")
+    public String uploadAvatar(
+            @RequestParam("profile_picture") MultipartFile file, // <-- nome form-data
+            @PathVariable long autoreId
+    ) {
+        return this.autoriService.uploadAvatar(autoreId, file);
+    }
+
 }

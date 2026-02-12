@@ -47,7 +47,7 @@ public class AutoriService {
         });
 
         //2. aggiungo campi
-        Autore newAutore = new Autore(payload.nome(), payload.cognome(), payload.email(), payload.dataDiNascita());
+        Autore newAutore = new Autore(payload.nome(), payload.cognome(), payload.email(), payload.password(), payload.dataDiNascita());
         newAutore.setAvatar("https://ui-avatars.com/api?name=" + payload.nome() + "+" + payload.cognome());
 
         //3. salvo
@@ -68,6 +68,7 @@ public class AutoriService {
         found.setNome(payload.getNome());
         found.setCognome(payload.getCognome());
         found.setEmail(payload.getEmail());
+        found.setPassword(payload.getPassword());
         found.setDataDiNascita(payload.getDataDiNascita());
         found.setAvatar("https://ui-avatars.com/api/?name=" + payload.getNome() + "+" + payload.getCognome());
         return autoriRepository.save(found);
@@ -79,7 +80,7 @@ public class AutoriService {
         this.autoriRepository.delete(found);
     }
 
-    public String uploadAvatar(MultipartFile file) {
+    public String uploadAvatar(long autoreId, MultipartFile file) {
         try {
             Map result = cloudinaryUploader.uploader().upload(file.getBytes(),
                     ObjectUtils.emptyMap());

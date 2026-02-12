@@ -25,7 +25,6 @@ public record AutoreDTO(
         String password,
 
         @NotNull(message = "La data di nascita è obbligatoria")
-        @JsonFormat(pattern = "yyyy-MM-dd")
         String dataDiNascita
 ) {
 }

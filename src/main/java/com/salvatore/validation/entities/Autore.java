@@ -9,6 +9,7 @@ import lombok.*;
 @Setter
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 public class Autore {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,12 +19,14 @@ public class Autore {
     private String cognome;
     private String email;
     private String dataDiNascita;
+    private String password;
     private String avatar;
 
-    public Autore(String nome, String cognome, String email, String dataDiNascita) {
+    public Autore(String nome, String cognome, String email, String password, String dataDiNascita) {
         this.nome = nome;
         this.cognome = cognome;
         this.email = email;
+        this.password = password;
         this.dataDiNascita = dataDiNascita;
         this.avatar = "https://ui-avatars.com/api/?name=" + nome + "+" + cognome;
     }
